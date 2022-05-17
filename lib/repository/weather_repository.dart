@@ -20,17 +20,18 @@ const baseUrl = 'https://api.openweathermap.org';
 final weatherURl = (String cityName) =>'$baseUrl/data/2.5/forecast?q=${cityName}&appid=${token}';
 //&units=metric
 //standard, metric and imperial
-class Weatherrepository {
+class WeatherRepository {
   final http.Client httpClient;
 
-  Weatherrepository({required this.httpClient}): assert (httpClient != null);
+  WeatherRepository({required this.httpClient}): assert (httpClient != null);
 
 
   Future<WeekWeather> getWeekWeather(String cityName) async {
     final response = await httpClient.get(Uri.parse(weatherURl(cityName)));
 
     if(response.statusCode == 200 ){
-        return jsonDecode(response.body) as WeekWeather;
+      final weatherJson = jsonDecode(response.body);
+        return WeekWeather.fromJson(weatherJson);
     }else{
       throw Exception('Error getting week weather of : ${cityName}');
     }

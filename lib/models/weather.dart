@@ -9,13 +9,13 @@ enum WeatherCondition {
   Dust,
   Fog,
   Sand,
-	Ash,
+  Ash,
   Squall,
-	Tornado,
+  Tornado,
   Clear,
-  Clouds
+  Clouds,
+  unknown
 }
-
 
 class Weather {
   int? id;
@@ -27,7 +27,7 @@ class Weather {
 
   Weather.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    main = json['main'];
+    main = _mapStringToWeatherCondition(json['main']);
     description = json['description'];
     icon = json['icon'];
   }
@@ -39,5 +39,26 @@ class Weather {
     data['description'] = this.description;
     data['icon'] = this.icon;
     return data;
+  }
+
+  static WeatherCondition _mapStringToWeatherCondition(String inputString) {
+    Map<String, WeatherCondition> map = {
+      'Thunderstorm': WeatherCondition.Thunderstorm,
+      'Drizzle': WeatherCondition.Drizzle,
+      'Rain': WeatherCondition.Rain,
+      'Snow': WeatherCondition.Snow,
+      'Mist': WeatherCondition.Mist,
+      'Smoke': WeatherCondition.Smoke,
+      'Haze': WeatherCondition.Haze,
+      'Dust': WeatherCondition.Dust,
+      'Fog': WeatherCondition.Fog,
+      'Sand': WeatherCondition.Sand,
+      'Ash': WeatherCondition.Ash,
+      'Squall': WeatherCondition.Squall,
+      'Tornado': WeatherCondition.Tornado,
+      'Clear': WeatherCondition.Clear,
+      'Clouds' :WeatherCondition.Clouds
+    };
+    return map[inputString] ?? WeatherCondition.unknown;
   }
 }

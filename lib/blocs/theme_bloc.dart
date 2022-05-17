@@ -7,9 +7,11 @@ import 'package:weather_app/states/theme_state.dart';
 class ThemeBloc extends Bloc<ThemeEvent, ThemeState>{
   //initial state
   ThemeBloc():
-      super(ThemeState(backgroundColor: Colors.lightBlue, textColor: Colors.white));
+      super(ThemeState(backgroundColor: Colors.lightBlue, textColor: Colors.white)){
+   on<ThemeEvent>(mapEventToState);
+  }
   
-  Stream<ThemeState> mapEventToState(ThemeEvent themeEvent) async*{
+  Future<void> mapEventToState(ThemeEvent themeEvent , Emitter<ThemeState> emit) async{
     ThemeState newThemeState;
     if(themeEvent is ThemeEventWeatherChanged) {
       final weatherCondition = themeEvent.weatherCondition;
@@ -31,7 +33,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState>{
         );
       }
 
-      yield newThemeState;
+      emit(newThemeState);
     }
   }
   }

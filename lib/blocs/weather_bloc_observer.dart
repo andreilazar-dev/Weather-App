@@ -12,4 +12,12 @@ class WeatherBlocObserver extends BlocObserver {
     super.onTransition(bloc, transition);
     print('onTransition $transition');
   }
+
+  @override
+  void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
+    // TODO: implement onError
+    super.onError(bloc, error, stackTrace);
+    print('onError $error');
+  }
+
 }

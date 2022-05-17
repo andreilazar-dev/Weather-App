@@ -13,7 +13,7 @@ class Parameters {
   Clouds? clouds;
   Wind? wind;
   int? visibility;
-  double? pop;
+  num? pop;
   Rain? rain;
   Sys? sys;
   String? dtTxt;

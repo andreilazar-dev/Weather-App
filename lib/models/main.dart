@@ -1,16 +1,18 @@
 
 //I choose this model name for one reason because in api json is called  same
 
+import 'dart:ffi';
+
 class Main {
-  double? temp;
-  double? feelsLike;
-  double? tempMin;
-  double? tempMax;
+  num? temp;
+  num? feelsLike;
+  num? tempMin;
+  num? tempMax;
   int? pressure;
   int? seaLevel;
   int? grndLevel;
   int? humidity;
-  double? tempKf;
+  dynamic tempKf;
 
   Main(
       {this.temp,
