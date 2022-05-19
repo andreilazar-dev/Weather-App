@@ -19,7 +19,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
       emit(WeatherStateLoading());
       try {
         final WeekWeather weekWeather =
-            await weatherrepository.getWeekWeather(weatherEvent.city);
+            await weatherrepository.getWeekWeatherByName(weatherEvent.city);
         emit(WeatherStateSuccess(weekWeather: weekWeather));
       } catch (exception) {
         emit(WeatherStateFailure());
@@ -27,7 +27,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     } else if (weatherEvent is WeatherEventRefresh) {
       try {
         final WeekWeather weekWeather =
-            await weatherrepository.getWeekWeather(weatherEvent.city);
+            await weatherrepository.getWeekWeather(weatherEvent.lat,weatherEvent.lon);
         emit(WeatherStateSuccess(weekWeather: weekWeather));
       } catch (exception) {
         emit(WeatherStateFailure());

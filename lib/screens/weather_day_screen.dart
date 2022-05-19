@@ -81,7 +81,7 @@ class _WeatherDayScreenState extends State<WeatherDayScreen> {
                     return RefreshIndicator(
                       onRefresh: () {
                         BlocProvider.of<WeatherBloc>(context).add(
-                            WeatherEventRefresh(city: weather.city as String));
+                            WeatherEventRefresh(lat: weather.city?.coord?.lat.toString() as String , lon: weather.city?.coord?.lon.toString() as String));
                         return _completer.future;
                       },
                       child: Container(

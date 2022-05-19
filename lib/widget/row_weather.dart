@@ -44,7 +44,7 @@ class RowWeather extends StatelessWidget {
             Column(
               children: [
                 Text(
-                  weather.main?.tempMax
+                  '${weather.main?.tempMax}°C '
                       .toString() as String,
                   style: TextStyle(
                       fontSize: 16,
@@ -52,7 +52,7 @@ class RowWeather extends StatelessWidget {
                       color: textColor),
                 ),
                 Text(
-                  weather.main?.tempMin
+                  '${weather.main?.tempMin}°C'
                       .toString() as String,
                   style: TextStyle(
                       fontSize: 12,

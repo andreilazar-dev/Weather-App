@@ -35,7 +35,7 @@ class TemperatureWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       Center(
-                        child:Text('${weather?.temp}',
+                        child:Text('${weather?.temp} °C',
                           style: TextStyle(
                             fontSize: headFontSize,
                             fontWeight: FontWeight.bold,
@@ -43,13 +43,13 @@ class TemperatureWidget extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Text('Min temp: ${weather?.tempMin}',
+                      Text('Min temp: ${weather?.tempMin} °C',
                         style: TextStyle(
                           fontSize: minFontSize,
                           color: _themeState.textColor,
                         ),
                       ),
-                      Text('Max temp: ${weather?.tempMax}',
+                      Text('Max temp: ${weather?.tempMax} °C',
                         style: TextStyle(
                           fontSize: minFontSize,
                           color: _themeState.textColor,
