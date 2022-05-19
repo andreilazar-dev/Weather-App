@@ -13,7 +13,6 @@ import '../models/weather.dart';
 import '../states/theme_state.dart';
 import '../states/weather_state.dart';
 
-
 class WeatherWeekScreen extends StatefulWidget {
   const WeatherWeekScreen({Key? key}) : super(key: key);
 
@@ -54,20 +53,23 @@ class _WeatherWeekScreenState extends State<WeatherWeekScreen> {
                   return RefreshIndicator(
                     onRefresh: () {
                       BlocProvider.of<WeatherBloc>(context).add(
-                          WeatherEventRefresh(lat: weather.city?.coord?.lat.toString() as String , lon: weather.city?.coord?.lon.toString() as String));
+                          WeatherEventRefresh(
+                              lat:
+                                  weather.city?.coord?.lat.toString() as String,
+                              lon: weather.city?.coord?.lon.toString()
+                                  as String));
                       return _completer.future;
                     },
                     child: Container(
                         decoration: BoxDecoration(
                             gradient: LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              colors: [
-                                Colors.blueAccent,
-                                Color.fromRGBO(254,250, 224, 1),
-                              ],
-                            )
-                        ),
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            Colors.blueAccent,
+                            Color.fromRGBO(254, 250, 224, 1),
+                          ],
+                        )),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 10, vertical: 60),
@@ -79,7 +81,9 @@ class _WeatherWeekScreenState extends State<WeatherWeekScreen> {
                                       weather.list?[index].dtTxt as String,
                                       weather.list?[index - 1].dtTxt
                                           as String)) {
-                                return RowWeather(weather: weather.list![index] , textColor: themeState.textColor);
+                                return RowWeather(
+                                    weather: weather.list![index],
+                                    textColor: themeState.textColor);
                               }
                               return Container();
                             }),

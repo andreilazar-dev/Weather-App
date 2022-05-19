@@ -111,41 +111,41 @@ class SearchBarAnimation extends StatefulWidget {
 
   const SearchBarAnimation(
       {required this.textEditingController,
-        required this.isOriginalAnimation,
-        Key? key,
-        this.searchBoxWidth,
-        this.trailingIcon = Icons.search,
-        this.secondaryButtonIcon = Icons.close,
-        this.buttonIcon = Icons.search,
-        this.hintText = "Search Here",
-        this.searchBoxColour = Colors.white,
-        this.buttonColour = Colors.white,
-        this.cursorColour = Colors.black,
-        this.buttonIconColour = Colors.black,
-        this.secondaryButtonIconColour = Colors.black,
-        this.trailingIconColour = Colors.black,
-        this.hintTextColour = Colors.grey,
-        this.searchBoxBorderColour = Colors.black12,
-        this.buttonShadowColour = Colors.black45,
-        this.buttonBorderColour = Colors.black26,
-        this.durationInMilliSeconds = 1000,
-        this.textInputType = TextInputType.text,
-        this.isSearchBoxOnRightSide = false,
-        this.enableKeyboardFocus = false,
-        this.enableBoxBorder = false,
-        this.enableButtonBorder = false,
-        this.enableButtonShadow = true,
-        this.enableBoxShadow = true,
-        this.textAlignToRight = false,
-        this.onSaved,
-        this.onChanged,
-        this.onFieldSubmitted,
-        this.onExpansionComplete,
-        this.onCollapseComplete,
-        this.onEditingComplete,
-        this.enteredTextStyle,
-        this.buttonElevation = 0,
-        this.inputFormatters})
+      required this.isOriginalAnimation,
+      Key? key,
+      this.searchBoxWidth,
+      this.trailingIcon = Icons.search,
+      this.secondaryButtonIcon = Icons.close,
+      this.buttonIcon = Icons.search,
+      this.hintText = "Search Here",
+      this.searchBoxColour = Colors.white,
+      this.buttonColour = Colors.white,
+      this.cursorColour = Colors.black,
+      this.buttonIconColour = Colors.black,
+      this.secondaryButtonIconColour = Colors.black,
+      this.trailingIconColour = Colors.black,
+      this.hintTextColour = Colors.grey,
+      this.searchBoxBorderColour = Colors.black12,
+      this.buttonShadowColour = Colors.black45,
+      this.buttonBorderColour = Colors.black26,
+      this.durationInMilliSeconds = 1000,
+      this.textInputType = TextInputType.text,
+      this.isSearchBoxOnRightSide = false,
+      this.enableKeyboardFocus = false,
+      this.enableBoxBorder = false,
+      this.enableButtonBorder = false,
+      this.enableButtonShadow = true,
+      this.enableBoxShadow = true,
+      this.textAlignToRight = false,
+      this.onSaved,
+      this.onChanged,
+      this.onFieldSubmitted,
+      this.onExpansionComplete,
+      this.onCollapseComplete,
+      this.onEditingComplete,
+      this.enteredTextStyle,
+      this.buttonElevation = 0,
+      this.inputFormatters})
       : super(key: key);
 
   @override
@@ -212,21 +212,21 @@ class _SearchBarAnimationState extends State<SearchBarAnimation>
               color: !widget.enableBoxBorder
                   ? Colors.transparent
                   : _isAnimationOn
-                  ? widget.searchBoxBorderColour!
-                  : Colors.transparent),
+                      ? widget.searchBoxBorderColour!
+                      : Colors.transparent),
           borderRadius: BorderRadius.circular(30.0),
           boxShadow: (!_isAnimationOn)
               ? null
               : ((widget.enableBoxShadow)
-              ? [
-            const BoxShadow(
-              color: Colors.black26,
-              spreadRadius: -10.0,
-              blurRadius: 10.0,
-              offset: Offset(0.0, 7.0),
-            ),
-          ]
-              : null),
+                  ? [
+                      const BoxShadow(
+                        color: Colors.black26,
+                        spreadRadius: -10.0,
+                        blurRadius: 10.0,
+                        offset: Offset(0.0, 7.0),
+                      ),
+                    ]
+                  : null),
         ),
         child: AnimatedContainer(
           duration: Duration(milliseconds: widget.durationInMilliSeconds),
@@ -267,8 +267,8 @@ class _SearchBarAnimationState extends State<SearchBarAnimation>
                 left: (!switcher)
                     ? 20.0
                     : (!widget.textAlignToRight)
-                    ? 45.0
-                    : 80.0,
+                        ? 45.0
+                        : 80.0,
                 curve: Curves.easeOut,
                 top: 11.0,
                 child: AnimatedOpacity(
@@ -278,7 +278,7 @@ class _SearchBarAnimationState extends State<SearchBarAnimation>
                     padding: const EdgeInsets.only(left: 10),
                     alignment: Alignment.topCenter,
                     width: (widget.searchBoxWidth ??
-                        MediaQuery.of(context).size.width) /
+                            MediaQuery.of(context).size.width) /
                         1.7,
                     child: _textFormField(),
                   ),
@@ -290,74 +290,74 @@ class _SearchBarAnimationState extends State<SearchBarAnimation>
                     : Alignment.centerLeft,
                 child: (widget.isOriginalAnimation)
                     ? Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: _isAnimationOn
-                          ? null
-                          : Border.all(color: widget.buttonBorderColour!),
-                    ),
-                    child: DecoratedBoxTransition(
-                      decoration:
-                      decorationTween.animate(_animationController),
-                      child: GestureDetector(
-                        child: CircleAvatar(
-                          backgroundColor: widget.buttonColour,
-                          child: Icon(
-                            switcher
-                                ? widget.secondaryButtonIcon!
-                                : widget.buttonIcon!,
-                            size: 20.0,
-                            color: switcher
-                                ? widget.secondaryButtonIconColour
-                                : widget.buttonIconColour,
+                        padding: const EdgeInsets.all(5.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: _isAnimationOn
+                                ? null
+                                : Border.all(color: widget.buttonBorderColour!),
+                          ),
+                          child: DecoratedBoxTransition(
+                            decoration:
+                                decorationTween.animate(_animationController),
+                            child: GestureDetector(
+                              child: CircleAvatar(
+                                backgroundColor: widget.buttonColour,
+                                child: Icon(
+                                  switcher
+                                      ? widget.secondaryButtonIcon!
+                                      : widget.buttonIcon!,
+                                  size: 20.0,
+                                  color: switcher
+                                      ? widget.secondaryButtonIconColour
+                                      : widget.buttonIconColour,
+                                ),
+                              ),
+                              onTap: () {
+                                _onTapFunctionOriginalAnim();
+                              },
+                            ),
                           ),
                         ),
-                        onTap: () {
-                          _onTapFunctionOriginalAnim();
-                        },
-                      ),
-                    ),
-                  ),
-                )
+                      )
                     : Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: widget.enableButtonBorder
-                          ? Border.all(color: widget.buttonBorderColour!)
-                          : null,
-                      boxShadow: widget.enableButtonShadow
-                          ? [
-                        BoxShadow(
-                          blurRadius: 5,
-                          color: widget.buttonShadowColour!,
-                          spreadRadius: widget.buttonElevation,
-                        )
-                      ]
-                          : null,
-                    ),
-                    child: GestureDetector(
-                      child: CircleAvatar(
-                        backgroundColor: widget.buttonColour,
-                        child: Icon(
-                          switcher
-                              ? widget.secondaryButtonIcon!
-                              : widget.buttonIcon!,
-                          size: 20.0,
-                          color: switcher
-                              ? widget.secondaryButtonIconColour
-                              : widget.buttonIconColour,
+                        padding: const EdgeInsets.all(5.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: widget.enableButtonBorder
+                                ? Border.all(color: widget.buttonBorderColour!)
+                                : null,
+                            boxShadow: widget.enableButtonShadow
+                                ? [
+                                    BoxShadow(
+                                      blurRadius: 5,
+                                      color: widget.buttonShadowColour!,
+                                      spreadRadius: widget.buttonElevation,
+                                    )
+                                  ]
+                                : null,
+                          ),
+                          child: GestureDetector(
+                            child: CircleAvatar(
+                              backgroundColor: widget.buttonColour,
+                              child: Icon(
+                                switcher
+                                    ? widget.secondaryButtonIcon!
+                                    : widget.buttonIcon!,
+                                size: 20.0,
+                                color: switcher
+                                    ? widget.secondaryButtonIconColour
+                                    : widget.buttonIconColour,
+                              ),
+                            ),
+                            onTap: () {
+                              _onTapFunction();
+                            },
+                          ),
                         ),
                       ),
-                      onTap: () {
-                        _onTapFunction();
-                      },
-                    ),
-                  ),
-                ),
               ),
             ],
           ),
@@ -370,7 +370,7 @@ class _SearchBarAnimationState extends State<SearchBarAnimation>
   void _onTapFunction() {
     _isAnimationOn = true;
     setState(
-          () {
+      () {
         if (!switcher) {
           switcher = true;
           setState(() {
@@ -406,7 +406,7 @@ class _SearchBarAnimationState extends State<SearchBarAnimation>
   void _onTapFunctionOriginalAnim() {
     _isAnimationOn = true;
     setState(
-          () {
+      () {
         if (!switcher) {
           switcher = true;
           setState(() {

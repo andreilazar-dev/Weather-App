@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_app/widget/temperatureWidget.dart';
-
-import '../main.dart';
 import '../models/week_weather.dart';
 
 class DayConditionWidget extends StatelessWidget {
@@ -26,7 +24,7 @@ class DayConditionWidget extends StatelessWidget {
                             children: [
                               Text(
                                   TimeOfDay.fromDateTime(DateTime.parse(
-                                      weather.list?[index].dtTxt as String))
+                                          weather.list?[index].dtTxt as String))
                                       .format(context),
                                   style: TextStyle(
                                     fontSize: 14,
@@ -38,7 +36,11 @@ class DayConditionWidget extends StatelessWidget {
                                   'http://openweathermap.org/img/wn/${weather.list?[index].weather?.first.icon}@2x.png',
                                 ),
                               ),
-                              TemperatureWidget(weather: weather.list?[index].main , headFontSize: 18,minFontSize: 10,)
+                              TemperatureWidget(
+                                weather: weather.list?[index].main,
+                                headFontSize: 18,
+                                minFontSize: 10,
+                              )
                             ],
                           ))),
                 )),

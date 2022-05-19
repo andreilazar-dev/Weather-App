@@ -13,12 +13,9 @@ import '../widget/searchbar.dart';
 class RootScreen extends StatefulWidget {
   @override
   _RootScreenState createState() => _RootScreenState();
-
 }
 
-
 class _RootScreenState extends State<RootScreen> {
-
   final TextEditingController _cityTextController = TextEditingController();
 
   @override
@@ -29,12 +26,41 @@ class _RootScreenState extends State<RootScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: SearchBarAnimation(
+          textEditingController: _cityTextController,
+          isOriginalAnimation: true,
+          enableKeyboardFocus: true,
+          onFieldSubmitted: (String value) {
+            debugPrint(value);
+            BlocProvider.of<WeatherBloc>(context)
+                .add(WeatherEventRequested(city: value));
+          },
+          onExpansionComplete: () {
+            debugPrint('do something just after searchbox is opened.');
+          },
+          onCollapseComplete: () {
+            debugPrint('do something just after searchbox is closed.');
+          },
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerTop,
+      body: BlocBuilder<NavigationCubit, NavigationState>(
+          builder: (context, state) {
+        if (state.navbarItem == NavbarItem.day) {
+          return WeatherDayScreen();
+        } else if (state.navbarItem == NavbarItem.week) {
+          return WeatherWeekScreen();
+        }
+        return Container();
+      }),
       bottomNavigationBar: BlocBuilder<NavigationCubit, NavigationState>(
         builder: (context, state) {
           return BottomNavigationBar(
             currentIndex: state.index,
             showUnselectedLabels: false,
-            backgroundColor: Color.fromRGBO(254,250, 224, 1),
+            backgroundColor: Color.fromRGBO(254, 250, 224, 1),
             items: [
               BottomNavigationBarItem(
                 icon: Icon(Icons.today),
@@ -57,39 +83,6 @@ class _RootScreenState extends State<RootScreen> {
           );
         },
       ),
-      body: BlocBuilder<NavigationCubit, NavigationState>(
-          builder: (context, state) {
-            if (state.navbarItem == NavbarItem.day) {
-              return WeatherDayScreen();
-            } else if (state.navbarItem == NavbarItem.week) {
-              return WeatherWeekScreen();
-            }
-            return Container();
-          }),
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: SearchBarAnimation(
-          textEditingController: _cityTextController,
-          isOriginalAnimation: true,
-          enableKeyboardFocus: true,
-          onFieldSubmitted: (String value){
-            debugPrint(value);
-            BlocProvider.of<WeatherBloc>(context)
-                .add(WeatherEventRequested(city: value));
-          },
-          onExpansionComplete: () {
-            debugPrint(
-                'do something just after searchbox is opened.');
-          },
-          onCollapseComplete: () {
-            debugPrint(
-                'do something just after searchbox is closed.');
-          },
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerTop,
-
     );
   }
 }
-

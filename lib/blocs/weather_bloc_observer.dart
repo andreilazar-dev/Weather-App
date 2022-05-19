@@ -7,8 +7,9 @@ class WeatherBlocObserver extends BlocObserver {
     super.onEvent(bloc, event);
     print('onEvent $event');
   }
+
   @override
-  void onTransition(Bloc bloc,Transition transition){
+  void onTransition(Bloc bloc, Transition transition) {
     super.onTransition(bloc, transition);
     print('onTransition $transition');
   }
@@ -19,5 +20,4 @@ class WeatherBlocObserver extends BlocObserver {
     super.onError(bloc, error, stackTrace);
     print('onError $error');
   }
-
 }

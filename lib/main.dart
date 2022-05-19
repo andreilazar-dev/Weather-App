@@ -8,7 +8,6 @@ import 'package:http/http.dart' as http;
 import 'package:weather_app/screens/root_screen.dart';
 import 'package:weather_app/states/theme_state.dart';
 import 'blocs/navigation_cubit.dart';
-import 'blocs/setting_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 Future<void> main() async {
@@ -30,9 +29,6 @@ Future<void> main() async {
       BlocProvider<ThemeBloc>(
         create: (context) => ThemeBloc(),
       ),
-      BlocProvider<SettingsBloc>(
-        create: (context) => SettingsBloc(),
-      )
     ],
     child: MyApp(weatherrepository: weatherRepository),
   ));

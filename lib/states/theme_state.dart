@@ -10,9 +10,8 @@ class ThemeState extends Equatable {
   const ThemeState({
     required this.backgroundColor,
     required this.textColor,
-  }):
-      assert(backgroundColor != null),
-      assert(textColor != null );
+  })  : assert(backgroundColor != null),
+        assert(textColor != null);
 
   List<Object> get props => [backgroundColor, textColor];
 }

@@ -7,24 +7,21 @@ abstract class WeatherState extends Equatable {
   List<Object?> get props => [];
 }
 
-class  WeatherStateInitial extends WeatherState{
-
+class WeatherStateInitial extends WeatherState {
   @override
   // TODO: implement props
   List<Object?> get props => throw UnimplementedError();
-
 }
+
 class WeatherStateLoading extends WeatherState {}
 
-class WeatherStateSuccess extends WeatherState{
+class WeatherStateSuccess extends WeatherState {
   final WeekWeather weekWeather;
 
-  const WeatherStateSuccess({required this.weekWeather}):
-      assert(weekWeather != null);
+  const WeatherStateSuccess({required this.weekWeather})
+      : assert(weekWeather != null);
 
   List<Object?> get props => [weekWeather];
 }
-class WeatherStateFailure extends WeatherState {
-  
-}
 
+class WeatherStateFailure extends WeatherState {}
