@@ -9,14 +9,16 @@ import 'package:weather_app/screens/root_screen.dart';
 import 'package:weather_app/states/theme_state.dart';
 import 'blocs/navigation_cubit.dart';
 import 'blocs/setting_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
+Future<void> main() async {
   BlocOverrides.runZoned(
     () {
       // Use blocs...
     },
     blocObserver: WeatherBlocObserver(),
   );
+  await dotenv.load(fileName: ".env");
   final WeatherRepository weatherRepository =
       WeatherRepository(httpClient: http.Client());
   runApp(

@@ -34,13 +34,14 @@ class _RootScreenState extends State<RootScreen> {
           return BottomNavigationBar(
             currentIndex: state.index,
             showUnselectedLabels: false,
+            backgroundColor: Color.fromRGBO(254,250, 224, 1),
             items: [
               BottomNavigationBarItem(
-                icon: Icon(Icons.calendar_view_day),
-                label: "Day",
+                icon: Icon(Icons.today),
+                label: "Today",
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.calendar_view_week),
+                icon: Icon(Icons.calendar_month),
                 label: "Week",
               ),
             ],

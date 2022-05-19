@@ -1,5 +1,8 @@
 ### Flutter Generated
 
+#app config
+.env
+
 # Miscellaneous
 *.class
 *.lock

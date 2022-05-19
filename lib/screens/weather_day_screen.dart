@@ -85,7 +85,16 @@ class _WeatherDayScreenState extends State<WeatherDayScreen> {
                         return _completer.future;
                       },
                       child: Container(
-                        color: themeState.backgroundColor,
+                        decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              colors: [
+                                themeState.backgroundColor,
+                               Color.fromRGBO(254,250, 224, 1),
+                              ],
+                            )
+                        ),
                         child: ListView(
                           children: [
                             const Padding(
