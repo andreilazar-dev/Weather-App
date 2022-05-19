@@ -48,7 +48,7 @@ class _WeatherDayScreenState extends State<WeatherDayScreen> {
               return const Center(child: CircularProgressIndicator());
             }
             if (weatherState is WeatherStateSuccess) {
-              final weather = weatherState.weekWeather;
+              final weekWeather = weatherState.weekWeather;
               return BlocBuilder<ThemeBloc, ThemeState>(
                 builder: (context, themeState) {
                   return RefreshIndicator(
@@ -56,8 +56,8 @@ class _WeatherDayScreenState extends State<WeatherDayScreen> {
                       BlocProvider.of<WeatherBloc>(context).add(
                           WeatherEventRefresh(
                               lat:
-                                  weather.city?.coord?.lat.toString() as String,
-                              lon: weather.city?.coord?.lon.toString()
+                                  weekWeather.city?.coord?.lat.toString() as String,
+                              lon: weekWeather.city?.coord?.lon.toString()
                                   as String));
                       return _completer.future;
                     },
@@ -80,14 +80,14 @@ class _WeatherDayScreenState extends State<WeatherDayScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.network(
-                                'http://openweathermap.org/img/wn/${weather.list?.first.weather?.first.icon}@2x.png',
+                                'http://openweathermap.org/img/wn/${weekWeather.list?.first.weather?.first.icon}@2x.png',
                                 scale: 0.8,
                               ),
                             ],
                           ),
                           Center(
                             child: Text(
-                              weather.city?.name as String,
+                              weekWeather.city?.name as String,
                               style: TextStyle(
                                   fontSize: 25,
                                   fontWeight: FontWeight.bold,
@@ -99,14 +99,14 @@ class _WeatherDayScreenState extends State<WeatherDayScreen> {
                           ),
                           Center(
                             child: Text(
-                              'Updated: ${TimeOfDay.fromDateTime(DateTime.parse(weather.list?.first.dtTxt as String)).format(context)}',
+                              'Updated: ${TimeOfDay.fromDateTime(DateTime.parse(weekWeather.list?.first.dtTxt as String)).format(context)}',
                               style: TextStyle(
                                   fontSize: 12, color: themeState.textColor),
                             ),
                           ),
                           Center(
                             child: Text(
-                              weather.list?.first.weather?.first.description
+                              weekWeather.list?.first.weather?.first.description
                                   as String,
                               style: TextStyle(
                                   fontSize: 25,
@@ -116,12 +116,12 @@ class _WeatherDayScreenState extends State<WeatherDayScreen> {
                           ),
                           //show more here, put together inside a Widget
                           TemperatureWidget(
-                            weather: weather.list?.first.main,
+                            mainWeather: weekWeather.list?.first.main,
                           ),
                           const Padding(
                             padding: EdgeInsets.symmetric(vertical: 60),
                           ),
-                          DayConditionWidget(weather: weather)
+                          DayConditionWidget(weekWeather: weekWeather)
                         ],
                       ),
                     ),

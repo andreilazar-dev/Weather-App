@@ -47,7 +47,7 @@ class _WeatherWeekScreenState extends State<WeatherWeekScreen> {
               return const Center(child: CircularProgressIndicator());
             }
             if (weatherState is WeatherStateSuccess) {
-              final weather = weatherState.weekWeather;
+              final weekWeather = weatherState.weekWeather;
               return BlocBuilder<ThemeBloc, ThemeState>(
                 builder: (context, themeState) {
                   return RefreshIndicator(
@@ -55,8 +55,8 @@ class _WeatherWeekScreenState extends State<WeatherWeekScreen> {
                       BlocProvider.of<WeatherBloc>(context).add(
                           WeatherEventRefresh(
                               lat:
-                                  weather.city?.coord?.lat.toString() as String,
-                              lon: weather.city?.coord?.lon.toString()
+                                  weekWeather.city?.coord?.lat.toString() as String,
+                              lon: weekWeather.city?.coord?.lon.toString()
                                   as String));
                       return _completer.future;
                     },
@@ -74,15 +74,15 @@ class _WeatherWeekScreenState extends State<WeatherWeekScreen> {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 10, vertical: 60),
                           child: ListView(
-                            children: List.generate(weather.list?.length ?? 0,
+                            children: List.generate(weekWeather.list?.length ?? 0,
                                 (index) {
                               if (index == 0 ||
                                   notSameDay(
-                                      weather.list?[index].dtTxt as String,
-                                      weather.list?[index - 1].dtTxt
+                                      weekWeather.list?[index].dtTxt as String,
+                                      weekWeather.list?[index - 1].dtTxt
                                           as String)) {
                                 return RowWeather(
-                                    weather: weather.list![index],
+                                    parameters: weekWeather.list![index],
                                     textColor: themeState.textColor);
                               }
                               return Container();

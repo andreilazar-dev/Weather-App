@@ -5,15 +5,15 @@ import '../models/main.dart';
 import '../states/theme_state.dart';
 
 class TemperatureWidget extends StatelessWidget {
-  final Main? weather;
+  final Main? mainWeather;
 
   double minFontSize;
   double headFontSize;
 
   //constructor
   TemperatureWidget(
-      {required this.weather, this.headFontSize = 25, this.minFontSize = 14})
-      : assert(weather != null);
+      {required this.mainWeather, this.headFontSize = 25, this.minFontSize = 14})
+      : assert(mainWeather != null);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class TemperatureWidget extends StatelessWidget {
       children: <Widget>[
         Center(
           child: Text(
-            '${weather?.temp} °C',
+            '${mainWeather?.temp} °C',
             style: TextStyle(
               fontSize: headFontSize,
               fontWeight: FontWeight.bold,
@@ -32,14 +32,14 @@ class TemperatureWidget extends StatelessWidget {
           ),
         ),
         Text(
-          'Min temp: ${weather?.tempMin} °C',
+          'Min temp: ${mainWeather?.tempMin} °C',
           style: TextStyle(
             fontSize: minFontSize,
             color: _themeState.textColor,
           ),
         ),
         Text(
-          'Max temp: ${weather?.tempMax} °C',
+          'Max temp: ${mainWeather?.tempMax} °C',
           style: TextStyle(
             fontSize: minFontSize,
             color: _themeState.textColor,

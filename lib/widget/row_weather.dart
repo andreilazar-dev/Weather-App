@@ -5,9 +5,9 @@ import 'package:weather_app/models/parameters.dart';
 
 class RowWeather extends StatelessWidget {
   Color textColor;
-  Parameters weather;
+  Parameters parameters;
 
-  RowWeather({Key? key, this.textColor = Colors.white, required this.weather})
+  RowWeather({Key? key, this.textColor = Colors.white, required this.parameters})
       : super(key: key);
 
   @override
@@ -20,30 +20,30 @@ class RowWeather extends StatelessWidget {
           children: [
             Text(
               DateFormat('EEEE MMM d')
-                  .format(DateTime.parse(weather.dtTxt as String)),
+                  .format(DateTime.parse(parameters.dtTxt as String)),
               style: TextStyle(
                   fontSize: 20, fontWeight: FontWeight.bold, color: textColor),
             ),
-            Text(weather.weather?.first.description as String,
+            Text(parameters.weather?.first.description as String,
                 style: TextStyle(fontSize: 16, color: textColor))
           ],
         ),
         Row(
           children: [
             Image.network(
-              'http://openweathermap.org/img/wn/${weather.weather?.first.icon}@2x.png',
+              'http://openweathermap.org/img/wn/${parameters.weather?.first.icon}@2x.png',
             ),
             Column(
               children: [
                 Text(
-                  '${weather.main?.tempMax}°C '.toString() as String,
+                  '${parameters.main?.tempMax}°C '.toString() as String,
                   style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                       color: textColor),
                 ),
                 Text(
-                  '${weather.main?.tempMin}°C'.toString() as String,
+                  '${parameters.main?.tempMin}°C'.toString() as String,
                   style: TextStyle(fontSize: 12, color: textColor),
                 ),
               ],
