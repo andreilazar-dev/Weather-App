@@ -5,9 +5,9 @@ import 'package:weather_app/blocs/weather_bloc.dart';
 import 'package:weather_app/blocs/weather_bloc_observer.dart';
 import 'package:weather_app/repository/weather_repository.dart';
 import 'package:http/http.dart' as http;
-import 'package:weather_app/screens/weather_screen.dart';
+import 'package:weather_app/screens/root_screen.dart';
 import 'package:weather_app/states/theme_state.dart';
-
+import 'blocs/navigation_cubit.dart';
 import 'blocs/setting_bloc.dart';
 
 void main() {
@@ -22,6 +22,9 @@ void main() {
   runApp(
       MultiBlocProvider(
     providers: [
+      BlocProvider<NavigationCubit>(
+      create: (context) => NavigationCubit()
+      ),
       BlocProvider<ThemeBloc>(
         create: (context) => ThemeBloc(),
       ),
@@ -49,7 +52,7 @@ class MyApp extends StatelessWidget {
         home: BlocProvider(
           create: (context) =>
               WeatherBloc(weatherrepository: weatherrepository),
-          child: const WeatherScreen(),
+          child: RootScreen(),
         ),
       );
     },

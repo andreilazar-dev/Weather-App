@@ -17,7 +17,8 @@ example: api.openweathermap.org/data/2.5/forecast?lat=35&lon=139&appid=b76c05411
 
 const token = 'b76c05411c5d44e0a09bd9b7c8802eeb';
 const baseUrl = 'https://api.openweathermap.org';
-final weatherURl = (String cityName) =>'$baseUrl/data/2.5/forecast?q=${cityName}&appid=${token}';
+final weatherURl = (String cityName) =>'$baseUrl/data/2.5/forecast?q=${cityName}&appid=${token}&units=metric';
+//final cityUrl = (String cityName) =>'$baseUrl/geo/1.0/direct?q=${cityName}&limit=5&appid=${token}';
 //&units=metric
 //standard, metric and imperial
 class WeatherRepository {
