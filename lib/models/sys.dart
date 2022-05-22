@@ -1,4 +1,6 @@
-class Sys {
+import 'package:equatable/equatable.dart';
+
+class Sys extends Equatable{
   String? pod;
 
   Sys({this.pod});
@@ -12,4 +14,8 @@ class Sys {
     data['pod'] = this.pod;
     return data;
   }
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [pod];
 }

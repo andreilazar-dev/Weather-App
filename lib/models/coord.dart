@@ -1,4 +1,6 @@
-class Coord {
+import 'package:equatable/equatable.dart';
+
+class Coord extends Equatable {
   num? lat;
   num? lon;
 
@@ -15,4 +17,8 @@ class Coord {
     data['lon'] = this.lon;
     return data;
   }
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [lat ,lon];
 }

@@ -5,15 +5,17 @@ import '../models/main.dart';
 import '../states/theme_state.dart';
 
 class TemperatureWidget extends StatelessWidget {
+  //required
   final Main? mainWeather;
 
+  //optional with default value
   double minFontSize;
   double headFontSize;
 
   //constructor
   TemperatureWidget(
-      {required this.mainWeather, this.headFontSize = 25, this.minFontSize = 14})
-      : assert(mainWeather != null);
+      {Key? key, required this.mainWeather, this.headFontSize = 25, this.minFontSize = 14})
+      : assert(mainWeather != null), super(key: key);
 
   @override
   Widget build(BuildContext context) {

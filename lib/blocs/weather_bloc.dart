@@ -5,10 +5,10 @@ import 'package:weather_app/repository/weather_repository.dart';
 import 'package:weather_app/states/weather_state.dart';
 
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
-  final WeatherRepository weatherrepository;
+  final WeatherRepository weatherRepository;
 
-  WeatherBloc({required this.weatherrepository})
-      : assert(weatherrepository != null),
+  WeatherBloc({required this.weatherRepository})
+      : assert(weatherRepository != null),
         super(WeatherStateInitial()) {
     on<WeatherEvent>(mapEventToState);
   }
@@ -19,14 +19,14 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
       emit(WeatherStateLoading());
       try {
         final WeekWeather weekWeather =
-            await weatherrepository.getWeekWeatherByName(weatherEvent.city);
+            await weatherRepository.getWeekWeatherByName(weatherEvent.city);
         emit(WeatherStateSuccess(weekWeather: weekWeather));
       } catch (exception) {
         emit(WeatherStateFailure());
       }
     } else if (weatherEvent is WeatherEventRefresh) {
       try {
-        final WeekWeather weekWeather = await weatherrepository.getWeekWeather(
+        final WeekWeather weekWeather = await weatherRepository.getWeekWeather(
             weatherEvent.lat, weatherEvent.lon);
         emit(WeatherStateSuccess(weekWeather: weekWeather));
       } catch (exception) {

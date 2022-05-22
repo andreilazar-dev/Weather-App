@@ -1,9 +1,9 @@
 
 //I choose this model name for one reason because in api json is called  same
 
-import 'dart:ffi';
+import 'package:equatable/equatable.dart';
 
-class Main {
+class Main  extends Equatable{
   num? temp;
   num? feelsLike;
   num? tempMin;
@@ -12,7 +12,7 @@ class Main {
   int? seaLevel;
   int? grndLevel;
   int? humidity;
-  dynamic tempKf;
+  num? tempKf;
 
   Main(
       {this.temp,
@@ -50,4 +50,18 @@ class Main {
     data['temp_kf'] = this.tempKf;
     return data;
   }
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [
+    temp,
+    feelsLike,
+    tempMin,
+    tempMax,
+    pressure,
+    seaLevel,
+    grndLevel,
+    humidity,
+    tempKf
+  ];
 }

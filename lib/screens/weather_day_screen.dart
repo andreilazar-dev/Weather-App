@@ -24,6 +24,7 @@ class WeatherDayScreen extends StatefulWidget {
 class _WeatherDayScreenState extends State<WeatherDayScreen> {
   late Completer<void> _completer;
 
+  @override
   void initState() {
     super.initState();
     _completer = Completer<void>();
@@ -44,13 +45,16 @@ class _WeatherDayScreenState extends State<WeatherDayScreen> {
             }
           },
           builder: (context, weatherState) {
+            //####  WeatherStateLoading ######
             if (weatherState is WeatherStateLoading) {
               return const Center(child: CircularProgressIndicator());
             }
+            //####  WeatherStateSuccess ######
             if (weatherState is WeatherStateSuccess) {
               final weekWeather = weatherState.weekWeather;
               return BlocBuilder<ThemeBloc, ThemeState>(
                 builder: (context, themeState) {
+                  /// Swipe to Refresh
                   return RefreshIndicator(
                     onRefresh: () {
                       BlocProvider.of<WeatherBloc>(context).add(
@@ -61,6 +65,7 @@ class _WeatherDayScreenState extends State<WeatherDayScreen> {
                                   as String));
                       return _completer.future;
                     },
+                    //### Background #####
                     child: Container(
                       decoration: BoxDecoration(
                           gradient: LinearGradient(
@@ -71,6 +76,8 @@ class _WeatherDayScreenState extends State<WeatherDayScreen> {
                           Color.fromRGBO(254, 250, 224, 1),
                         ],
                       )),
+
+                      //##### Screen Content ###
                       child: ListView(
                         children: [
                           const Padding(
@@ -129,12 +136,14 @@ class _WeatherDayScreenState extends State<WeatherDayScreen> {
                 },
               );
             }
+            //### WeatherStateFailure ###
             if (weatherState is WeatherStateFailure) {
               return Text(
                 'Something went wrong',
                 style: TextStyle(color: Colors.redAccent, fontSize: 16),
               );
             }
+            //### No State Definition Init State
             return Center(
               child: Text(
                 'select a location first !',

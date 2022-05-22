@@ -1,6 +1,8 @@
+import 'package:equatable/equatable.dart';
+
 import 'coord.dart';
 
-class City {
+class City  extends Equatable  {
   int? id;
   String? name;
   Coord? coord;
@@ -45,4 +47,16 @@ class City {
     data['sunset'] = this.sunset;
     return data;
   }
+
+  @override
+  List<Object?> get props => [
+    id,
+    name,
+    coord,
+    country,
+    population,
+    timezone,
+    sunrise,
+    sunset
+  ];
 }

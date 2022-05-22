@@ -7,7 +7,7 @@ import 'package:weather_app/repository/weather_repository.dart';
 import 'package:http/http.dart' as http;
 import 'package:weather_app/screens/root_screen.dart';
 import 'package:weather_app/states/theme_state.dart';
-import 'blocs/navigation_cubit.dart';
+import 'cubit/navigation_cubit.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 Future<void> main() async {
@@ -17,6 +17,7 @@ Future<void> main() async {
     },
     blocObserver: WeatherBlocObserver(),
   );
+  //Load  Env File
   await dotenv.load(fileName: ".env");
   final WeatherRepository weatherRepository =
       WeatherRepository(httpClient: http.Client());
@@ -49,7 +50,7 @@ class MyApp extends StatelessWidget {
         title: 'weather_app',
         home: BlocProvider(
           create: (context) =>
-              WeatherBloc(weatherrepository: weatherrepository),
+              WeatherBloc(weatherRepository: weatherrepository),
           child: RootScreen(),
         ),
       );

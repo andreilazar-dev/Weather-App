@@ -1,5 +1,7 @@
-class Rain {
-  double? d3h;
+import 'package:equatable/equatable.dart';
+
+class Rain  extends Equatable{
+  num? d3h;
 
   Rain({this.d3h});
 
@@ -12,4 +14,7 @@ class Rain {
     data['3h'] = this.d3h;
     return data;
   }
+
+  @override
+  List<Object?> get props => [d3h];
 }

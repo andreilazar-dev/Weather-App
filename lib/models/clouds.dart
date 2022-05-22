@@ -1,4 +1,6 @@
-class Clouds {
+import 'package:equatable/equatable.dart';
+
+class Clouds  extends Equatable{
   int? all;
 
   Clouds({this.all});
@@ -12,4 +14,10 @@ class Clouds {
     data['all'] = this.all;
     return data;
   }
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [
+    all
+  ];
 }

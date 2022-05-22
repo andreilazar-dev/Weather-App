@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:weather_app/models/rain.dart';
 import 'package:weather_app/models/sys.dart';
 import 'package:weather_app/models/weather.dart';
@@ -6,7 +7,7 @@ import 'package:weather_app/models/wind.dart';
 import 'clouds.dart';
 import 'main.dart';
 
-class Parameters {
+class Parameters extends Equatable {
   int? dt;
   Main? main;
   List<Weather>? weather;
@@ -75,4 +76,18 @@ class Parameters {
     data['dt_txt'] = this.dtTxt;
     return data;
   }
+
+  @override
+  List<Object?> get props => [
+        dt,
+        main,
+        weather,
+        clouds,
+        wind,
+        visibility,
+        pop,
+        rain,
+        sys,
+        dtTxt,
+      ];
 }

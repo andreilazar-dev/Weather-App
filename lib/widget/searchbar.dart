@@ -3,6 +3,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+//This widget it's based to https://pub.dev/packages/searchbar_animation
+//I make some change to my personal taste
+
 class SearchBarAnimation extends StatefulWidget {
   /// This gives the width to the searchbar by default it will take the size of whole screen.
   final double? searchBoxWidth;

@@ -7,7 +7,7 @@ import 'package:weather_app/states/theme_state.dart';
 class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   //initial state
   ThemeBloc()
-      : super(ThemeState(
+      : super(const ThemeState(
             backgroundColor: Colors.lightBlue, textColor: Colors.white)) {
     on<ThemeEvent>(mapEventToState);
   }
@@ -35,11 +35,11 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
           textColor = Colors.black;
           break;
         case WeatherCondition.Snow:
-          backgroundcolor = Color.fromRGBO(162, 210, 255, 1);
+          backgroundcolor = const Color.fromRGBO(162, 210, 255, 1);
           textColor = Colors.black;
           break;
         case WeatherCondition.Rain:
-          backgroundcolor = Color.fromRGBO(69, 123, 157, 1);
+          backgroundcolor = const Color.fromRGBO(69, 123, 157, 1);
           textColor = Colors.black;
           break;
         case WeatherCondition.Thunderstorm:
@@ -54,7 +54,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
           textColor = Colors.black;
           break;
         default:
-          backgroundcolor = Color.fromRGBO(254, 250, 224, 1);
+          backgroundcolor = const Color.fromRGBO(254, 250, 224, 1);
           textColor = Colors.black;
           break;
       }
@@ -63,24 +63,6 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
         backgroundColor: backgroundcolor,
         textColor: textColor,
       );
-
-      // if(weatherCondition == WeatherCondition.Clear){
-      //   newThemeState = ThemeState(
-      //     backgroundColor: Colors.orangeAccent,
-      //     textColor: Colors.black,
-      //   );
-      //   }
-      // else if (weatherCondition == WeatherCondition.Clouds){
-      //   newThemeState = ThemeState(
-      //     backgroundColor: Colors.black,
-      //     textColor: Colors.white,
-      //   );
-      // }else {
-      //   newThemeState = ThemeState(
-      //     backgroundColor: Colors.black,
-      //     textColor: Colors.black,
-      //   );
-      // }
 
       emit(newThemeState);
     }

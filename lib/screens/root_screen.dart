@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/screens/weather_day_screen.dart';
 import 'package:weather_app/screens/weather_week_screen.dart';
-import '../blocs/navigation_cubit.dart';
+import '../cubit/navigation_cubit.dart';
 import '../blocs/weather_bloc.dart';
 import '../events/weather_event.dart';
 import '../models/nav_item.dart';
@@ -26,12 +26,15 @@ class _RootScreenState extends State<RootScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+      //### Search Bar #####
       floatingActionButton: Padding(
         padding: const EdgeInsets.all(15.0),
         child: SearchBarAnimation(
           textEditingController: _cityTextController,
           isOriginalAnimation: true,
           enableKeyboardFocus: true,
+
           onFieldSubmitted: (String value) {
             debugPrint(value);
             BlocProvider.of<WeatherBloc>(context)
@@ -46,22 +49,27 @@ class _RootScreenState extends State<RootScreen> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerTop,
+
+      // ### Screens ####
       body: BlocBuilder<NavigationCubit, NavigationState>(
           builder: (context, state) {
         if (state.navbarItem == NavbarItem.day) {
-          return WeatherDayScreen();
+          return const WeatherDayScreen();
         } else if (state.navbarItem == NavbarItem.week) {
-          return WeatherWeekScreen();
+          return const WeatherWeekScreen();
         }
         return Container();
       }),
+
+      //### Nav Bar ###
       bottomNavigationBar: BlocBuilder<NavigationCubit, NavigationState>(
         builder: (context, state) {
           return BottomNavigationBar(
             currentIndex: state.index,
             showUnselectedLabels: false,
-            backgroundColor: Color.fromRGBO(254, 250, 224, 1),
-            items: [
+            backgroundColor: const Color.fromRGBO(254, 250, 224, 1),
+            //### Label bar ###
+            items: const [
               BottomNavigationBarItem(
                 icon: Icon(Icons.today),
                 label: "Today",
@@ -71,6 +79,7 @@ class _RootScreenState extends State<RootScreen> {
                 label: "Week",
               ),
             ],
+            //### Action
             onTap: (index) {
               if (index == 0) {
                 BlocProvider.of<NavigationCubit>(context)

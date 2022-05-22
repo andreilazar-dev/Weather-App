@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_app/widget/row_weather.dart';
+import 'package:weather_app/widget/row_weather_item.dart';
 
 import '../blocs/theme_bloc.dart';
 import '../blocs/weather_bloc.dart';
@@ -23,6 +23,7 @@ class WeatherWeekScreen extends StatefulWidget {
 class _WeatherWeekScreenState extends State<WeatherWeekScreen> {
   late Completer<void> _completer;
 
+  @override
   void initState() {
     super.initState();
     _completer = Completer<void>();
@@ -43,28 +44,33 @@ class _WeatherWeekScreenState extends State<WeatherWeekScreen> {
             }
           },
           builder: (context, weatherState) {
+            //####  WeatherStateLoading ######
             if (weatherState is WeatherStateLoading) {
               return const Center(child: CircularProgressIndicator());
             }
+            //####  WeatherStateSuccess ######
             if (weatherState is WeatherStateSuccess) {
               final weekWeather = weatherState.weekWeather;
               return BlocBuilder<ThemeBloc, ThemeState>(
                 builder: (context, themeState) {
+                  /// Swipe to Refresh
                   return RefreshIndicator(
                     onRefresh: () {
                       BlocProvider.of<WeatherBloc>(context).add(
                           WeatherEventRefresh(
-                              lat:
-                                  weekWeather.city?.coord?.lat.toString() as String,
+                              lat: weekWeather.city?.coord?.lat.toString()
+                                  as String,
                               lon: weekWeather.city?.coord?.lon.toString()
                                   as String));
                       return _completer.future;
                     },
+                    //### Background #####
                     child: Container(
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                             gradient: LinearGradient(
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
+                          // Use Fixed Color
                           colors: [
                             Colors.blueAccent,
                             Color.fromRGBO(254, 250, 224, 1),
@@ -73,15 +79,17 @@ class _WeatherWeekScreenState extends State<WeatherWeekScreen> {
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 10, vertical: 60),
+
+                          //##### Screen Content ###
                           child: ListView(
-                            children: List.generate(weekWeather.list?.length ?? 0,
-                                (index) {
+                            children: List.generate(
+                                weekWeather.list?.length ?? 0, (index) {
                               if (index == 0 ||
                                   notSameDay(
                                       weekWeather.list?[index].dtTxt as String,
                                       weekWeather.list?[index - 1].dtTxt
                                           as String)) {
-                                return RowWeather(
+                                return RowWeatherItem(
                                     parameters: weekWeather.list![index],
                                     textColor: themeState.textColor);
                               }
@@ -93,12 +101,14 @@ class _WeatherWeekScreenState extends State<WeatherWeekScreen> {
                 },
               );
             }
+            //### WeatherStateFailure ###
             if (weatherState is WeatherStateFailure) {
               return const Text(
                 'Something went wrong',
                 style: TextStyle(color: Colors.redAccent, fontSize: 16),
               );
             }
+            //### No State Definition Init State
             return const Center(
               child: Text(
                 'select a location first !',
@@ -111,6 +121,8 @@ class _WeatherWeekScreenState extends State<WeatherWeekScreen> {
     );
   }
 
+
+  //TODO : Refactor this method
   bool notSameDay(String date1, String date2) {
     DateTime from = DateTime.parse(date1);
     DateTime to = DateTime.parse(date2);
