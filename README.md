@@ -80,3 +80,14 @@ WeekWeather
 <img src="https://github.com/andreilazar-dev/Weather-App/raw/main/images/screen2.png" width="200" height="400">
 <img src="https://github.com/andreilazar-dev/Weather-App/raw/main/images/search.png" width="200" height="400">
 </p>
+
+
+I created a root screen that contains the navbar, the search bar and the two screens.
+
+The nav bar is managed through **NavigationCubit** which has a Status containing **NavbarItem** { day , week  } and **index**
+
+## Icon
+The icons were always taken from open weather using the endpoint with the icon code found in the object
+```dart
+Image.network('http://openweathermap.org/img/wn/${parameters.weather?.first.icon}@2x.png'),
+```
