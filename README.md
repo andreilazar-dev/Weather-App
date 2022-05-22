@@ -2,8 +2,6 @@
 
 This is a small weather app made in a short time just a few days (I intend to expand it later) for training purposes and also to learn how to use bloc.
 --
-
-#
 ## API
 
 The app is based on data taken from open weather.
@@ -76,7 +74,9 @@ WeekWeather
         int sunset;
 ```
 
-![test image size]<img src="https://fullpath/assets/yourgif.gif" width="400" height="790">
-![My Image](images/screen1.png)
-![My Image](images/screen2.png)
-![My Image](images/search.png)
+# Screenshot from the app
+<p float="left">
+<img src="https://github.com/andreilazar-dev/Weather-App/raw/main/images/screen1.png" width="200" height="400">
+<img src="https://github.com/andreilazar-dev/Weather-App/raw/main/images/screen2.png" width="200" height="400">
+<img src="https://github.com/andreilazar-dev/Weather-App/raw/main/images/search.png" width="200" height="400">
+</p>
