@@ -81,6 +81,16 @@ WeekWeather
 <img src="https://github.com/andreilazar-dev/Weather-App/raw/main/images/search.png" width="200" height="400">
 </p>
 
+<p float="left">
+<img src="https://github.com/andreilazar-dev/Weather-App/raw/main/images/refresh.png" width="200" height="400">
+<img src="https://github.com/andreilazar-dev/Weather-App/raw/main/images/normal.png" width="200" height="400">
+<img src="https://github.com/andreilazar-dev/Weather-App/raw/main/images/sun.png" width="200" height="400">
+</p>
+--
+
+The daily view also has reactive background based on the weather condition referencing the Enum WeatherCondition.
+By swiping down you can refresh the page
+--
 
 I created a root screen that contains the navbar, the search bar and the two screens.
 
@@ -91,3 +101,8 @@ The icons were always taken from open weather using the endpoint with the icon c
 ```dart
 Image.network('http://openweathermap.org/img/wn/${parameters.weather?.first.icon}@2x.png'),
 ```
+
+
+## Blocs
+
+I used two main blocks to manage the screens, **WeatherBloc** and **ThemeBloc**,  WeathrBloc manages two states _WeatherEventRequested_ for a new search and  _WeatherEventRefresh_  for when swiping down. Theme Bloc takes care of the color of the texts and the reactive background.
