@@ -136,6 +136,12 @@ class _WeatherDayScreenState extends State<WeatherDayScreen> {
                 },
               );
             }
+            if (weatherState is WeatherStateNotFound) {
+              return Text(
+                'City not found try to write better',
+                style: TextStyle(color: Colors.redAccent, fontSize: 16),
+              );
+            }
             //### WeatherStateFailure ###
             if (weatherState is WeatherStateFailure) {
               return Text(

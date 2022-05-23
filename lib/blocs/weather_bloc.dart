@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/events/weather_event.dart';
 import 'package:weather_app/models/week_weather.dart';
@@ -22,7 +24,11 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
             await weatherRepository.getWeekWeatherByName(weatherEvent.city);
         emit(WeatherStateSuccess(weekWeather: weekWeather));
       } catch (exception) {
-        emit(WeatherStateFailure());
+        if(exception is HttpException){
+          emit(WeatherStateNotFound());
+        }else {
+          emit(WeatherStateFailure());
+        }
       }
     } else if (weatherEvent is WeatherEventRefresh) {
       try {

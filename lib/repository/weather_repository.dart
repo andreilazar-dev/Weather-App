@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:weather_app/models/week_weather.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -25,6 +26,8 @@ class WeatherRepository {
     if (response.statusCode == 200) {
       final weatherJson = jsonDecode(response.body);
       return WeekWeather.fromJson(weatherJson);
+    }else if (response.statusCode == 404){
+      throw HttpException('404');
     } else {
       throw Exception('Error getting week weather of : ${cityName}');
     }

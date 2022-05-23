@@ -22,3 +22,5 @@ class WeatherStateSuccess extends WeatherState {
 }
 
 class WeatherStateFailure extends WeatherState {}
+
+class WeatherStateNotFound extends WeatherState {}
